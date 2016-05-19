@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
-  get 'products/index'
+  root to: 'products#index'
 
-  get 'products/show'
-
-  get 'products/new'
-
-  get 'products/edit'
+  resources :products
 
 end

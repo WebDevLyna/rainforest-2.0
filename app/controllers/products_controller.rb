@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   # View all Products on Index
   def index
-    @product = Product.all
+    @products = Product.all
   end
 
   #  Find product by ID when clicked on for show
@@ -24,21 +24,29 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_url
     else
-      render :edit
-    end
-
-    def destroy
-      @product = Product.find(params[:id])
-      @product.destroy
-      redirect_to products_url
-    end
-
-    private
-
-    def product_params
-      params.require(:product).permit(:name, :description, :price_in_centts)
+      render :new
     end
   end
 
+  def update
+    @product = Product.find(params[:id])
 
+    if @product.update_attributes(product_params)
+      redirect_to product_url(@product)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_url
+  end
+
+  private
+  def product_params
+    params.require(:product).permit(:name, :description, :price_in_cents)
+  end
+  
 end
