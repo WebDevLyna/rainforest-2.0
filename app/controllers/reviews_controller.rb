@@ -9,10 +9,10 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @Review.update_attributes(product_params)
-      redirect_to product_review_path(@review)
+    if @review.update review_params
+      redirect_to @product, notice: "Your review was successfully saved!"
     else
-      render 'edit_form'
+      render 'edit'
     end
   end
 
@@ -30,15 +30,15 @@ class ReviewsController < ApplicationController
     # )
 
     if @review.save
-      redirect_to 'products/reviews', notice: 'Review created successfully'
+      redirect_to products_url, notice: 'Review created successfully'
     else
-      render 'product/review'
+      render 'products/show'
     end
   end
 
   def destroy
     @review.destroy
-    redirect_to products_path
+    redirect_to @product
   end
 
   private
