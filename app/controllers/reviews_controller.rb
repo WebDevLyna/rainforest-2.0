@@ -1,8 +1,19 @@
 class ReviewsController < ApplicationController
   before_action :load_product
+  before_action :find_review, only: [:show, :edit, :update, :destroy]
 
   def show
-    @review = Review.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @Review.update_attributes(product_params)
+      redirect_to product_review_path(@review)
+    else
+      render 'edit_form'
+    end
   end
 
   def create
@@ -19,15 +30,15 @@ class ReviewsController < ApplicationController
     # )
 
     if @review.save
-      redirect_to products_url, notice: 'Review created successfully'
+      redirect_to 'products/reviews', notice: 'Review created successfully'
     else
-      render 'products/show'
+      render 'product/review'
     end
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
+    redirect_to products_path
   end
 
   private
@@ -37,6 +48,10 @@ class ReviewsController < ApplicationController
 
   def load_product
     @product = Product.find(params[:product_id])
-end
+  end
+
+  def find_review
+    @review = Review.find(params[:id])
+  end
 
 end

@@ -1,7 +1,8 @@
 <h1>Products (<%= @products.length %>)</h1>
-<%= link_to "New Product", "/products/new" %>
+<%= link_to "New Product", new_product_path %>
+<br><br>
 
 <!-- Loop all products, take each and give product name, description and formatted price of dollar from cents -->
 <% @products.each do |product| %>
-  <p><%= product.name %>, <%= product.description %>, <%= product.formatted_price %></p>
+  <p><%= product.name %>, <%= product.description %>, <%= product.formatted_price %>
 <% end %>

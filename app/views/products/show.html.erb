@@ -1,6 +1,8 @@
-<h3>Reviews</h3>
+<h3>Products</h3>
 
-  <p>Reviews for <%= @product.name %></p>
+  <p>Reviews for <%= @product.name %>
+    <%= link_to 'Edit Product', edit_product_path %>
+  </p>
 
   <% @product.reviews.each do |review| %>
     <p>
@@ -9,10 +11,11 @@
       <% if review.user != nil %>
         <em> by <%= review.user.email %></em>
         Added on: <%= review.created_at %>
+      <%= link_to 'Edit Review', edit_product_review_path(@product, review) %>
+      <%= link_to 'Delete Review',  { action: :destroy, id: review.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </p>
   <% end %>
-
   <% if current_user %>
     <h4>New Review</h4>
 

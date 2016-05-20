@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # The bcrypt Ruby gem provides a simple wrapper for safely handling passwords. Secure hash and salt password - authentication
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Quiet database reports
+gem 'quiet_assets'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
