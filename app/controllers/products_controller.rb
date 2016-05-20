@@ -8,8 +8,6 @@ class ProductsController < ApplicationController
 
   #  Find product by ID when clicked on for show
   def show
-    @product = Product.find(params[:id])
-
     if current_user
       @review = @product.reviews.build
     end

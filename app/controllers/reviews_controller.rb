@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     # )
 
     if @review.save
-      redirect_to products_url, notice: 'Review created successfully'
+      redirect_to product_review_path(@product, @review), notice: 'Review created successfully!'
     else
       render 'products/show'
     end

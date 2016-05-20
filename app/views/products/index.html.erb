@@ -4,5 +4,10 @@
 
 <!-- Loop all products, take each and give product name, description and formatted price of dollar from cents -->
 <% @products.each do |product| %>
-  <p><%= product.name %>, <%= product.description %>, <%= product.formatted_price %>
+  <h3><%= link_to product.name, product_path(product) %></h3>
+  <p>
+  <%= product.description %><br>
+  <%= product.formatted_price %>
+  </p>
+
 <% end %>
